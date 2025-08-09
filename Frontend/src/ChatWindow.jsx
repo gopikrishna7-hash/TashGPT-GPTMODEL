@@ -11,6 +11,7 @@ function ChatWindow(){
     const {prompt,setPrompt,reply,setReply ,currThreadId,prevChats,setprevChats,setChat}=useContext(MyContext);
     const [loading,setLoading]=useState(false);
      const [isOpen,setIsOpen]=useState(false);
+    const API_BASE=process.env.REACT_API_URL;
 
     const getReply=async()=>{
         setLoading(true);
@@ -27,7 +28,7 @@ function ChatWindow(){
         })
         };
         try{
-            const response=await fetch(`${import.meta.env.VITE_API_URL}/api/chat`,options);
+            const response=await fetch(`${API_BASEL}/api/chat`,options);
             const res=await response.json();
             // console.log(res);
             setReply(res.reply);
