@@ -1,5 +1,6 @@
 import "./Sidebar.css"
 
+import blackLogo from "./assests/blacklogo.png";
 import { useContext,useEffect } from "react";
 import {MyContext} from "./MyContext.jsx";
 import {v1 as uuidv1} from "uuid";
@@ -14,7 +15,7 @@ function Sidebar(){
             const response =await fetch(`${API_BASE}/api/thread`);
             const res=await response.json();
             const filterData=res.map(thread=>({threadId:thread.threadId,title:thread.title}));
-            // console.log(res);
+            console.log(res);
             setallThreads(filterData);
         }catch(err){
             console.log(err);
@@ -65,7 +66,7 @@ function Sidebar(){
     
         <section className="sidebar">
             <button onClick={createNewchat}>
-                <img src="src/assets/blacklogo.png" alt="gpt logo" className="logo"/>
+                <img src={blackLogo} alt="gpt logo" className="logo"/>
                 <span><i><i className="fa-regular fa-pen-to-square"></i></i>
                     </span>
             </button>
