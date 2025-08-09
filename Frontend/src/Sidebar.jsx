@@ -8,10 +8,10 @@ import {v1 as uuidv1} from "uuid";
 
 function Sidebar(){
     const {allThreads,setallThreads,currThreadId,setChat,setPrompt,setReply,setCurrThreadId,setprevChats}=useContext(MyContext);
-
+    const API_BASE=process.env.REACT_APP_API_URL;
     const getallThreads=async ()=>{
         try{
-            const response =await fetch(`${import.meta.env.VITE_API_URL}/api/thread`);
+            const response =await fetch(`${API_BASE}/api/thread`);
             const res=await response.json();
             const filterData=res.map(thread=>({threadId:thread.threadId,title:thread.title}));
             // console.log(res);
@@ -36,7 +36,7 @@ function Sidebar(){
     const changeThread=async(newThreadId)=>{
         setCurrThreadId(newThreadId);
         try{
-                const response=await fetch(`${import.meta.env.VITE_API_URL}/api/thread/${newThreadId}`);
+                const response=await fetch(`${API_BASE}/api/thread/${newThreadId}`);
                 const res=await response.json();
                 // console.log(res);
                 setprevChats(res);
@@ -48,7 +48,7 @@ function Sidebar(){
     }
      const deleteThread=async(threadId)=>{
             try{
-                const response=await fetch(`${import.meta.env.VITE_API_URL}/${threadId}`,{method:"DELETE"});
+                const response=await fetch(`${API_BASE}/${threadId}`,{method:"DELETE"});
                 const res=await response.json();
                 console.log(res);
                 setallThreads(prev=>prev.filter(thread=>thread.threadId!==threadId));
