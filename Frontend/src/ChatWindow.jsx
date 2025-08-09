@@ -33,7 +33,7 @@ function ChatWindow(){
             // console.log(res);
             setReply(res.reply);
         }catch(err){
-            req.flash("error",err.message)
+            // req.flash("error",err.message)
         }
        setLoading(false);
     }
